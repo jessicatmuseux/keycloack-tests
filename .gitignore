@@ -1,0 +1,43 @@
+# Ignora los archivos de historial y LightHouse
+.history
+.lh
+
+# Ignora los archivos de sistema
+*.log
+*.pid
+*.replay
+
+# Ignora los archivos de Docker
+**/docker-compose.yaml
+
+# Ignora los archivos de Java
+*.class
+
+# Ignora los archivos de Python
+*.pyc
+
+# Ignora los archivos de configuración de IDEs y editores
+.idea/
+*.iml
+modules.xml
+.idea/misc.xml
+*.ipr
+.idea/sonarlint
+
+# Ignora los archivos de construcción
+cmake-build-*/
+
+# Ignora los archivos de MongoDB
+.idea/**/mongoSettings.xml
+
+# Ignora los archivos de JIRA
+atlassian-ide-plugin.xml
+
+# Ignora los archivos de Crashlytics
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Ignora los archivos de cache de Android Studio
+.idea/caches/build_file_checksums.ser
