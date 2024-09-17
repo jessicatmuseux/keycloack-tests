@@ -1,0 +1,22 @@
+{
+    "sourceFile": "container/docker-compose.yaml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1726605672116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1726605835579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,24 +16,24 @@\n       KEYCLOAK_ADMIN: admin\r\n       KEYCLOAK_ADMIN_PASSWORD: admin\r\n       ADMIN_PASSWORD: admin\r\n       KEYCLOAK_LOG_LEVEL: INFO,org.keycloak.services.managers:DEBUG,org.keycloak.events:DEBUG,org.keycloak.credential:DEBUG\r\n-    volumes:\r\n-      - ./keycloak/log:/fluentd/log\r\n+    #volumes:\r\n+      #- ./keycloak/log:/fluentd/log\r\n     ports:\r\n       - \"8080:8080\"\r\n     depends_on:\r\n-      - fluentd\r\n+      #- fluentd\r\n       - postgres\r\n-    links:\r\n-      - fluentd\r\n-    logging:\r\n-      driver: fluentd\r\n-      options:\r\n-        # fluentd-address: fluentd:24224\r\n-        fluentd-address: 172.18.0.3:24224\r\n-        # fluentd-address: keycloak-sumologic-fluentd:24224\r\n-        tag: keycloak\r\n+    #links:\r\n+      #- fluentd\r\n+    #logging:\r\n+      #driver: fluentd\r\n+      #options:\r\n+        ## fluentd-address: fluentd:24224\r\n+        #fluentd-address: 172.18.0.3:24224\r\n+        ## fluentd-address: keycloak-sumologic-fluentd:24224\r\n+        #tag: keycloak\r\n \r\n   postgres:\r\n     image: postgres:13\r\n     environment:\r\n@@ -42,19 +42,19 @@\n       POSTGRES_PASSWORD: password\r\n     volumes:\r\n       - postgres_data:/var/lib/postgresql/data\r\n \r\n-  fluentd:\r\n-    build:\r\n-      context: ./fluentd\r\n-      dockerfile: Dockerfile\r\n-    volumes:\r\n-      - ./fluentd/fluent.conf:/fluentd/etc/fluent.conf\r\n-      - ./keycloak/log:/fluentd/log\r\n-    # links:\r\n-    #   - keycloak\r\n-    # ports:\r\n-    #   - 24224:24224\r\n+  #fluentd:\r\n+    #build:\r\n+      #context: ./fluentd\r\n+      #dockerfile: Dockerfile\r\n+    #volumes:\r\n+      #- ./fluentd/fluent.conf:/fluentd/etc/fluent.conf\r\n+      #- ./keycloak/log:/fluentd/log\r\n+    ## links:\r\n+    ##   - keycloak\r\n+    ## ports:\r\n+    ##   - 24224:24224\r\n \r\n volumes:\r\n   postgres_data:\r\n # networks:\r\n"
+                }
+            ],
+            "date": 1726605672116,
+            "name": "Commit-0",
+            "content": "version: '3'\r\nservices:\r\n  keycloak:\r\n    # image: docker.io/bitnami/keycloak\r\n    image: quay.io/keycloak/keycloak:25.0.2\r\n    command: start-dev\r\n    environment:\r\n      DB_VENDOR: postgres\r\n      DB_ADDR: postgres\r\n      DB_PORT: 5432\r\n      DB_DATABASE: keycloak\r\n      DB_USER: keycloak\r\n      DB_PASSWORD: password\r\n      KEYCLOAK_ADMIN_USER: admin\r\n      ADMIN_USER: admin\r\n      KEYCLOAK_ADMIN: admin\r\n      KEYCLOAK_ADMIN_PASSWORD: admin\r\n      ADMIN_PASSWORD: admin\r\n      KEYCLOAK_LOG_LEVEL: INFO,org.keycloak.services.managers:DEBUG,org.keycloak.events:DEBUG,org.keycloak.credential:DEBUG\r\n    volumes:\r\n      - ./keycloak/log:/fluentd/log\r\n    ports:\r\n      - \"8080:8080\"\r\n    depends_on:\r\n      - fluentd\r\n      - postgres\r\n    links:\r\n      - fluentd\r\n    logging:\r\n      driver: fluentd\r\n      options:\r\n        # fluentd-address: fluentd:24224\r\n        fluentd-address: 172.18.0.3:24224\r\n        # fluentd-address: keycloak-sumologic-fluentd:24224\r\n        tag: keycloak\r\n\r\n  postgres:\r\n    image: postgres:13\r\n    environment:\r\n      POSTGRES_DB: keycloak\r\n      POSTGRES_USER: keycloak\r\n      POSTGRES_PASSWORD: password\r\n    volumes:\r\n      - postgres_data:/var/lib/postgresql/data\r\n\r\n  fluentd:\r\n    build:\r\n      context: ./fluentd\r\n      dockerfile: Dockerfile\r\n    volumes:\r\n      - ./fluentd/fluent.conf:/fluentd/etc/fluent.conf\r\n      - ./keycloak/log:/fluentd/log\r\n    # links:\r\n    #   - keycloak\r\n    # ports:\r\n    #   - 24224:24224\r\n\r\nvolumes:\r\n  postgres_data:\r\n# networks:\r\n#   network1:\r\n#     name: my-pre-existing-network\r\n"
+        }
+    ]
+}

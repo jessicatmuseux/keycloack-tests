@@ -1,0 +1,18 @@
+{
+    "sourceFile": "keycloak-mask-logging-extension/src/main/resources/META-INF/services/org.keycloak.services.resources.admin.AdminEventListenerProviderFactory",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1726609508122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1726609508122,
+            "name": "Commit-0",
+            "content": "com.example.keycloak.logging.MaskedLoggingProvider"
+        }
+    ]
+}

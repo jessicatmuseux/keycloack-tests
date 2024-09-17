@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.thomasdarimont.keycloak</groupId>
+    <artifactId>keycloak-extension-playground</artifactId>
+    <version>1.0.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>keycloak-playground-server</module>
+        <module>simple-auth-extension</module>
+        <module>simple-auth-form-extension</module>
+        <module>simple-theme</module>
+        <module>simple-formaction-extension</module>
+        <module>simple-oidc-mapper</module>
+        <module>simple-saml-mapper</module>
+        <module>simple-custom-saml-protocol</module>
+        <module>simple-event-listener</module>
+        <module>simple-realm-rest-resource</module>
+        <module>auth-require-role-extension</module>
+        <module>auth-require-group-extension</module>
+        <module>auth-identity-first-extension</module>
+        <module>reset-password-after-login-eventlistener-extension</module>
+        <module>virtual-client-storage-provider-extension</module>
+        <module>jaxrs-request-filter-extension</module>
+        <module>auth-dynamic-idp-redirector-extension</module>
+        <module>auth-session-propagation-extension</module>
+        <module>adhoc-keycloak-extensions</module>
+        <module>smallrye-metrics-extension</module>
+        <module>simple-javascript-extensions</module>
+        <module>smallrye-health-extension</module>
+        <module>auth-require-access-policy-extension</module>
+        <module>auth-check-authz-policy-extension</module>
+        <module>tenant-selection-form-extension</module>
+        <module>thirdparty-mfa-auth-extension</module>
+        <module>auth-login-notify-email-extension</module>
+        <module>github-enterprise-identity-provider</module>
+        <module>auth-forgot-username-extension</module>
+        <module>token-validation-ui-extension</module>
+        <module>flyweight-user-storage-provider-extension</module>
+        <module>keycloak-admin-client-example</module>
+        <module>simple-session-access-resource</module>
+        <module>personalinfo-auth-form-extension</module>
+        <module>saml-group-idp-mapper</module>
+        <module>provisioning-event-listener-extension</module>
+        <module>external-client-storage-extension</module>
+        <module>dynamic-email-code-auth-extension</module>
+        <module>custom-required-action</module>
+        <module>custom-ldapattribute-import-mapper</module>
+        <module>auth-faceauth-extension</module>
+        <module>auth-custom-registration-create-user</module>
+        <module>simple-realm-resource-with-form-example</module>
+        <module>auth-trust-device</module>
+        <module>auth-backup-codes</module>
+        <module>json-theme-provider-extension</module>
+        <module>simple-registration-form-action-example</module>
+        <module>kafka-event-listener</module>
+        <module>auth-message-of-the-day</module>
+        <module>filebased-sync-userstorage-provider</module>
+        <module>custom-user-profile-extension</module>
+        <module>remote-keycloak-federation</module>
+        <module>custom-login-forms-provider</module>
+        <module>custom-saml-identity-provider</module>
+        <module>custom-ldap-user-storage-provider</module>
+    </modules>
+
+    <properties>
+
+        <!-- general settings -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <!-- dependency versions -->
+        <lombok.version>1.18.22</lombok.version>
+
+        <keycloak.version>19.0.3</keycloak.version>
+        <auto-service.version>1.0.1</auto-service.version>
+        <httpcomponents.version>4.5.13</httpcomponents.version>
+        <jackson.version>2.13.2</jackson.version>
+        <jackson-databind.version>2.13.2.2</jackson-databind.version>
+        <resteasy-jaxrs.version>4.7.5.Final</resteasy-jaxrs.version>
+        <jboss-servlet-api.version>2.0.0.Final</jboss-servlet-api.version>
+        <testcontainers-keycloak.version>2.1.2</testcontainers-keycloak.version>
+        <assertj-core.version>3.22.0</assertj-core.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+        <undertow-servlet.version>2.2.14.Final</undertow-servlet.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-themes</artifactId>
+                <version>${keycloak.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-testsuite-utils</artifactId>
+                <version>${keycloak.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-core</artifactId>
+                <version>${resteasy-jaxrs.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.spec.javax.servlet</groupId>
+                <artifactId>jboss-servlet-api_4.0_spec</artifactId>
+                <version>${jboss-servlet-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+                <optional>true</optional>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.auto.service</groupId>
+                <artifactId>auto-service</artifactId>
+                <version>${auto-service.version}</version>
+                <scope>provided</scope>
+                <optional>true</optional>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit-jupiter.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

@@ -1,0 +1,62 @@
+version: '3'
+services:
+  keycloak:
+    # image: docker.io/bitnami/keycloak
+    image: quay.io/keycloak/keycloak:25.0.2
+    command: start-dev
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_ADMIN_USER: admin
+      ADMIN_USER: admin
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      ADMIN_PASSWORD: admin
+      KEYCLOAK_LOG_LEVEL: INFO,org.keycloak.services.managers:DEBUG,org.keycloak.events:DEBUG,org.keycloak.credential:DEBUG
+    #volumes:
+      #- ./keycloak/log:/fluentd/log
+    ports:
+      - "8080:8080"
+    depends_on:
+      #- fluentd
+      - postgres
+    #links:
+      #- fluentd
+    #logging:
+      #driver: fluentd
+      #options:
+        ## fluentd-address: fluentd:24224
+        #fluentd-address: 172.18.0.3:24224
+        ## fluentd-address: keycloak-sumologic-fluentd:24224
+        #tag: keycloak
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  #fluentd:
+    #build:
+      #context: ./fluentd
+      #dockerfile: Dockerfile
+    #volumes:
+      #- ./fluentd/fluent.conf:/fluentd/etc/fluent.conf
+      #- ./keycloak/log:/fluentd/log
+    ## links:
+    ##   - keycloak
+    ## ports:
+    ##   - 24224:24224
+
+volumes:
+  postgres_data:
+# networks:
+#   network1:
+#     name: my-pre-existing-network

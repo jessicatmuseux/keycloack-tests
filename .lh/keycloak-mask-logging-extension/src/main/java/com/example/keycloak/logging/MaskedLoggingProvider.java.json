@@ -1,0 +1,22 @@
+{
+    "sourceFile": "keycloak-mask-logging-extension/src/main/java/com/example/keycloak/logging/MaskedLoggingProvider.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1726609486917,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1726609587770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,11 +51,13 @@\n \r\n     @Override\r\n     public void postInit(KeycloakSessionFactory factory) {}\r\n \r\n+    /* \r\n     @Override\r\n     public void close() {}\r\n-\r\n+    */\r\n+    \r\n     @Override\r\n     public String getId() {\r\n         return \"masked-logging\";\r\n     }\r\n"
+                }
+            ],
+            "date": 1726609486917,
+            "name": "Commit-0",
+            "content": "package com.example.keycloak.logging;\r\n\r\nimport org.keycloak.events.Event;\r\nimport org.keycloak.events.EventListenerProvider;\r\nimport org.keycloak.events.EventListenerProviderFactory;\r\nimport org.keycloak.events.EventType;\r\nimport org.keycloak.models.KeycloakSession;\r\nimport org.keycloak.models.KeycloakSessionFactory;\r\nimport org.jboss.logging.Logger;\r\n\r\npublic class MaskedLoggingProvider implements EventListenerProvider, EventListenerProviderFactory {\r\n\r\n    private static final Logger logger = Logger.getLogger(MaskedLoggingProvider.class);\r\n\r\n    @Override\r\n    public void onEvent(Event event) {\r\n        if (event.getType() == EventType.LOGIN_ERROR) {\r\n            String maskedUser = maskUsername(event.getUserId());\r\n            logger.infof(\"Failed login attempt for user: %s\", maskedUser);\r\n        }\r\n    }\r\n\r\n    private String maskUsername(String username) {\r\n        if (username.contains(\"@\")) {\r\n            String[] parts = username.split(\"@\");\r\n            return maskString(parts[0]) + \"@\" + parts[1];\r\n        } else {\r\n            return maskString(username);\r\n        }\r\n    }\r\n\r\n    private String maskString(String str) {\r\n        int maskLength = (int) Math.ceil(str.length() * 0.6);\r\n        StringBuilder masked = new StringBuilder(str.substring(0, str.length() - maskLength));\r\n        for (int i = 0; i < maskLength; i++) {\r\n            masked.append(\"*\");\r\n        }\r\n        return masked.toString();\r\n    }\r\n\r\n    @Override\r\n    public void close() {}\r\n\r\n    @Override\r\n    public EventListenerProvider create(KeycloakSession session) {\r\n        return new MaskedLoggingProvider();\r\n    }\r\n\r\n    @Override\r\n    public void init(org.keycloak.Config.Scope config) {}\r\n\r\n    @Override\r\n    public void postInit(KeycloakSessionFactory factory) {}\r\n\r\n    @Override\r\n    public void close() {}\r\n\r\n    @Override\r\n    public String getId() {\r\n        return \"masked-logging\";\r\n    }\r\n}"
+        }
+    ]
+}
