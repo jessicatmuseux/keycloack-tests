@@ -18,7 +18,7 @@ public class MaskedLoggingProvider implements EventListenerProvider, EventListen
     public void onEvent(Event event) {
         if (event.getType() == EventType.LOGIN_ERROR || event.getType() == EventType.LOGIN) {
             String maskedUser = maskUsername(event.getUserId());
-            logger.infof("Login attempt for user: %s", maskedUser);
+            logger.infof("Custom Log: Login attempt for user: %s", maskedUser);
         }
     }
 
@@ -26,7 +26,7 @@ public class MaskedLoggingProvider implements EventListenerProvider, EventListen
     public void onEvent(AdminEvent adminEvent, boolean includeRepresentation) {
         if (adminEvent.getOperationType() == OperationType.ACTION && adminEvent.getResourceType() == ResourceType.USER) {
             String maskedUser = maskUsername(adminEvent.getResourcePath());
-            logger.infof("Admin action performed on user: %s", maskedUser);
+            logger.infof("Custom Log: Admin action performed on user: %s", maskedUser);
         }
     }
 
