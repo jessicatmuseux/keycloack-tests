@@ -17,8 +17,9 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
       ADMIN_PASSWORD: admin
       KEYCLOAK_LOG_LEVEL: INFO,org.keycloak.services.managers:DEBUG,org.keycloak.events:DEBUG,org.keycloak.credential:DEBUG
-    #volumes:
+    volumes:
       #- ./keycloak/log:/fluentd/log
+      - ./keycloak-mask-logging-extension/target/keycloak-mask-logging-extension-1.0.0.jar:/opt/jboss/keycloak/standalone/deployments/keycloak-mask-logging-extension.jar
     ports:
       - "8080:8080"
     depends_on:

@@ -41,3 +41,9 @@ fabric.properties
 
 # Ignora los archivos de cache de Android Studio
 .idea/caches/build_file_checksums.ser
+
+# Ignorar todo el directorio target
+target/
+
+# Exceptuar el archivo keycloak-mask-logging-extension-1.0.0.jar
+!target/keycloak-mask-logging-extension-1.0.0.jar
