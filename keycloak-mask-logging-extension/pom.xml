@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.keycloak</groupId>
     <artifactId>keycloak-mask-logging-extension</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <properties>
         <keycloak.version>25.0.2</keycloak.version>
         <!--
@@ -36,7 +36,7 @@
             <artifactId>keycloak-services</artifactId>
             <version>${keycloak.version}</version>
         </dependency>
-
+                                
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
